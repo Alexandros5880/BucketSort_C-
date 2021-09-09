@@ -6,7 +6,6 @@ using namespace std;
 
 void min_max(int arr[], int &n, int * min, int * max)
 {
-    // Initialize maximum element
     *max = arr[0];
     *min = arr[0];
     for (int i = 1; i < n; i++) {
@@ -19,9 +18,9 @@ void min_max(int arr[], int &n, int * min, int * max)
     }
 }
  
-// Function to sort arr[] of
-// size n using bucket sort
-void bucketSort(int arr[], int n) {
+
+void bucketSort(int arr[], int n)
+{
     // 1). Find Min and Max values
     int min_val;
     int max_val;
@@ -70,7 +69,7 @@ void bucketSort(int arr[], int n) {
 }
  
 
-/* Driver program to test above function */
+
 int main() {
     //float arr[] = { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434, 0.345, 0.222, 0.111, 0.234 };
     int arr[] = { 11, 77, 7, 3, 33, 17, 90, 100, 1, 50, 32, 31, 57, 77, 11 };
