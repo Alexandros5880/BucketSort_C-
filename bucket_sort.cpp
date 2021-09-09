@@ -4,7 +4,11 @@
 #include <iostream>
 using namespace std;
 
-void min_max(int arr[], int &n, int * min, int * max)
+template<
+    typename T,
+    typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type
+>
+void min_max(T arr[], int &n, T * min, T * max)
 {
     *max = arr[0];
     *min = arr[0];
@@ -19,17 +23,21 @@ void min_max(int arr[], int &n, int * min, int * max)
 }
  
 
-void bucketSort(int arr[], int n)
+template<
+    typename T,
+    typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type
+>
+void bucketSort(T arr[], int n)
 {
     // 1). Find Min and Max values
-    int min_val;
-    int max_val;
+    T min_val;
+    T max_val;
     min_max(arr, n, &min_val, &max_val);
     // 2). Get The value increase of every bucket (max_value / array_length)
-    int value_increase = max_val/n;
+    T value_increase = max_val/n;
     // 3). Grab the values (start/stop value of every bucket)
-    int values[n*2];
-    int value = min_val;
+    T values[n*2];
+    T value = min_val;
     for (int i = 0; i < (n*2); i++) {
         if(i > 0) {
             if (i%2 == 0) {
@@ -43,7 +51,7 @@ void bucketSort(int arr[], int n)
         }
     }
     // 4). Create n empty buckets wigth lwngth of the list
-    vector<int> bucket[n];
+    vector<T> bucket[n];
     // 5). Put array elements in the right buckets
     for (int i = 0; i < n; i++) {  // values[i]
 
@@ -74,7 +82,7 @@ int main() {
     //float arr[] = { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434, 0.345, 0.222, 0.111, 0.234 };
     int arr[] = { 11, 77, 7, 3, 33, 17, 90, 100, 1, 50, 32, 31, 57, 77, 11 };
     int n = sizeof(arr) / sizeof(arr[0]);
-    bucketSort(arr, n);
+    bucketSort<int>(arr, n);
     for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
     return 0;
