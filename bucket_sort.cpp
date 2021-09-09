@@ -22,13 +22,13 @@ void min_max(int arr[], int &n, int * min, int * max)
 // Function to sort arr[] of
 // size n using bucket sort
 void bucketSort(int arr[], int n) {
-    // Find Min and Max values
+    // 1). Find Min and Max values
     int min_val;
     int max_val;
     min_max(arr, n, &min_val, &max_val);
-    // Get The value increase of every bucket (max_value / array_length)
+    // 2). Get The value increase of every bucket (max_value / array_length)
     int value_increase = max_val/n;
-    // Grab the values (start/stop value of every bucket)
+    // 3). Grab the values (start/stop value of every bucket)
     int values[n*2];
     int value = min_val;
     for (int i = 0; i < (n*2); i++) {
@@ -43,9 +43,9 @@ void bucketSort(int arr[], int n) {
             values[i] = min_val;
         }
     }
-    // 1) Create n empty buckets wigth lwngth of the list
+    // 4). Create n empty buckets wigth lwngth of the list
     vector<int> bucket[n];
-    // 2) Put array elements in the right buckets
+    // 5). Put array elements in the right buckets
     for (int i = 0; i < n; i++) {  // values[i]
 
         for (int j=0; j<n*2; j++) {
@@ -56,11 +56,11 @@ void bucketSort(int arr[], int n) {
             }
         }
     }
-    // 3) Sort individual buckets
+    // 6). Sort individual buckets
     for (int i = 0; i < n; i++) {
         sort(bucket[i].begin(), bucket[i].end());
     }
-    // 4) Concatenate all buckets into arr[]
+    // 7). Concatenate all buckets into arr[]
     int index = 0;
     for (int i = 0; i < n; i++) {
         for (unsigned int j = 0; j < bucket[i].size(); j++) {
@@ -69,7 +69,7 @@ void bucketSort(int arr[], int n) {
     }
 }
  
- 
+
 /* Driver program to test above function */
 int main() {
     //float arr[] = { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434, 0.345, 0.222, 0.111, 0.234 };
